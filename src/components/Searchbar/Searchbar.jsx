@@ -2,27 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Searchbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-    };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onInput = this.onInput.bind(this);
-  }
+  state = {
+    input: '',
+  };
 
-  onInput(e) {
+  onInput = e => {
     this.setState({
       input: e.target.value,
     });
-  }
+  };
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     if (this.state.input) {
       this.props.onSubmit(this.state.input);
     }
-  }
+  };
   render() {
     return (
       <header className="searchbar">

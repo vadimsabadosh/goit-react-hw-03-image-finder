@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ImageGalleryItem from 'components/ImageGalleryItem';
 
-export default class ImageGallery extends Component {
-  render() {
-    return (
-      <ul className="gallery">
-        {this.props.gallery.map(item => (
-          <ImageGalleryItem
-            webformatURL={item.webformatURL}
-            largeImageURL={item.largeImageURL}
-            key={item.id}
-          />
-        ))}
-      </ul>
-    );
-  }
+export default function ImageGallery({ gallery }) {
+  return (
+    <ul className="gallery">
+      {gallery.map(({ webformatURL, largeImageURL, id }) => (
+        <ImageGalleryItem
+          webformatURL={webformatURL}
+          largeImageURL={largeImageURL}
+          key={id}
+        />
+      ))}
+    </ul>
+  );
 }
 ImageGallery.propTypes = {
   gallery: PropTypes.arrayOf(

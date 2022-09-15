@@ -3,25 +3,20 @@ import PropTypes from 'prop-types';
 import Modal from 'components/Modal';
 
 export default class ImageGalleryItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-    this.onOpenModal = this.onOpenModal.bind(this);
-    this.onCloseModal = this.onCloseModal.bind(this);
-  }
+  state = {
+    isOpen: false,
+  };
 
-  onOpenModal() {
+  onOpenModal = () => {
     this.setState({
       isOpen: true,
     });
-  }
-  onCloseModal() {
+  };
+  onCloseModal = () => {
     this.setState({
       isOpen: false,
     });
-  }
+  };
 
   render() {
     return (
