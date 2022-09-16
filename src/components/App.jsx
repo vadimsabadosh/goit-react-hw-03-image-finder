@@ -23,7 +23,15 @@ export class App extends Component {
   fetchData = async () => {
     return fetch(
       `https://pixabay.com/api/?q=${this.state.search}&page=${this.state.page}&key=29811952-77bff0dc85e47b91b88370210&image_type=photo&orientation=horizontal&per_page=12`
-    ).then(res => res.json());
+    )
+      .then(res => res.json())
+      .then(json => {
+        return json.hits.map(item => ({
+          id: item.id,
+          largeImageURL: item.largeImageURL,
+          webformatURL: item.webformatURL,
+        }));
+      });
   };
 
   componentDidUpdate = (_, prevState) => {
@@ -34,7 +42,7 @@ export class App extends Component {
       this.setState({ loading: true });
       this.fetchData().then(json => {
         this.setState(state => ({
-          gallery: [...state.gallery, ...json.hits],
+          gallery: [...state.gallery, ...json],
           loading: false,
         }));
       });
